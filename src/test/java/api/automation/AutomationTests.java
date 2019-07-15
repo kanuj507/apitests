@@ -40,7 +40,7 @@ public class AutomationTests extends TestBase {
     @Test
     public void VerifyInvalidGetApi() throws SQLException {
 
-        Response response = restUtil.getByUrl(baseURI + "/invalidposts");
+        Response response = restUtil.getByUrl(baseURI + Constants.INVALID_POSTS);
         response.then().assertThat().statusCode(HttpStatus.SC_NOT_FOUND);
 
     }
@@ -52,12 +52,11 @@ public class AutomationTests extends TestBase {
         requestMap.put("title", "foo");
         requestMap.put("body", "bar");
         requestMap.put("userId", 1);
-        Response response = restUtil.postByUrl(baseURI + "/posts", requestMap);
+        Response response = restUtil.postByUrl(baseURI + Constants.POSTS, requestMap);
         response.then().assertThat().statusCode(HttpStatus.SC_CREATED);
         response.then().assertThat().body("id", equalTo(101));
 
-        // response = restUtil.getByUrl("https://jsonplaceholder.typicode.com" +
-        // "/posts/" + 101);
+        // response = restUtil.getByUrl("https://jsonplaceholder.typicode.com" + "/posts/" + 101);
         // response.then().assertThat().statusCode(200);
 
     }
@@ -70,7 +69,7 @@ public class AutomationTests extends TestBase {
         requestMap.put("body", "xyz");
         requestMap.put("userId", 1);
         requestMap.put("id", 1);
-        Response response = restUtil.putByUrl(baseURI + "/posts/1", requestMap);
+        Response response = restUtil.putByUrl(baseURI + String.format(Constants.SINGLE_POSTS, 1), requestMap);
         response.then().assertThat().statusCode(HttpStatus.SC_OK);
         response.then().assertThat().body("id", equalTo(1));
  //     Get seems to returning the old value the Put is not presisting in the jsonplaceholder DB        
@@ -82,7 +81,7 @@ public class AutomationTests extends TestBase {
     @Test
     public void VerifyDeleteApi() throws SQLException {
 
-        Response response = restUtil.deleteByUrl(baseURI + "/posts/1");
+        Response response = restUtil.deleteByUrl(baseURI + String.format(Constants.SINGLE_POSTS, 1));
         response.then().assertThat().statusCode(HttpStatus.SC_OK);
 
     }
