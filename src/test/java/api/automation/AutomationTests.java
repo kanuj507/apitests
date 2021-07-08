@@ -1,21 +1,16 @@
 package api.automation;
 
-import static org.hamcrest.CoreMatchers.equalTo;
+import com.api.util.Constants;
+import com.api.util.TestBase;
+import io.restassured.response.Response;
+import org.apache.http.HttpStatus;
+import org.testng.annotations.Test;
 
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.http.HttpStatus;
-import org.apache.http.protocol.HTTP;
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
-import com.api.util.Constants;
-import com.api.util.RestUtil;
-import com.api.util.TestBase;
-import com.jayway.restassured.response.Response;
-import com.jayway.restassured.response.ResponseBody;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 public class AutomationTests extends TestBase {
 
